@@ -53,7 +53,7 @@ def non_internal_required(fn):
 ####Database####
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@mysql_server:3306/w999'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/w999'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
