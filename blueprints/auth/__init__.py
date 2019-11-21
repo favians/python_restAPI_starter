@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restful import Api, Resource, reqparse, marshal
 import json, hashlib
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, get_jwt_claims
-from blueprints.client.model import Clients
+from blueprints.Client.model import Clients
 
 bp_auth = Blueprint('auth', __name__)
 api = Api(bp_auth)
@@ -32,7 +32,9 @@ class CreateTokenResource(Resource):
 
         return {"status":"success",'result': token}, 200, {'Content-Type':'application/json'}
 
+    @jwt_required
     def get(self):
-        return {"status":"success", 'result': "gege"}, 200, {'Content-Type':'application/json'}
+        claims = get_jwt_claims()
+        return {"status":"success", 'result': claims}, 200, {'Content-Type':'application/json'}
 
 api.add_resource(CreateTokenResource,'')

@@ -53,7 +53,7 @@ def non_internal_required(fn):
 ####Database####
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/w999'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/flaskstarter'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -83,12 +83,12 @@ def after_request(response):
 # Import blueprints
 ###############################
 
-from blueprints.auth import bp_auth
-from blueprints.client.resources import bp_client
-from blueprints.strukturOrganisasi.resources import bp_strukturOrganisasi
+from blueprints.Auth import bp_auth
+from blueprints.Client.resources import bp_client
+from blueprints.Pets.resources import bp_pets
 
-app.register_blueprint(bp_auth, url_prefix='/dumm')
+app.register_blueprint(bp_auth, url_prefix='/login')
 app.register_blueprint(bp_client, url_prefix='/client' )
-app.register_blueprint(bp_strukturOrganisasi, url_prefix='/strukturorganisasi' )
+app.register_blueprint(bp_pets, url_prefix='/pets' )
 
 db.create_all()

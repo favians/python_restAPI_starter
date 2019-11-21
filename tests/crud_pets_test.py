@@ -12,13 +12,13 @@ class TestbookCrud():
 ########### PUBLIC 
 ########## GET
     def test_get_public_book_list_valid(self, client):
-        res = client.get('public/buku')
+        res = client.get('pets')
 
         res_json = json.loads(res.data)
         assert res.status_code == 200
 
     def test_get_public_book_list_invalid(self, client):
-        res = client.get('public/buku/')
+        res = client.get('pets')
 
         res_json = json.loads(res.data)
         assert res.status_code == 404
@@ -26,7 +26,7 @@ class TestbookCrud():
 
 
 ################################
-############### PENERBIT########
+############### PETS ###########
 ################################
 ############### POST
 

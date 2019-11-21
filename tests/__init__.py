@@ -22,8 +22,8 @@ def create_token():
     if token is None:
         ##prepare request input
         data = {
-            'client_id':'internal',
-            'client_secret':'internalis'
+            'username':'testusername',
+            'password':'testpassword'
         }
         # do request
 
@@ -53,8 +53,8 @@ def create_token_noninternal():
     if token is None:
         ##prepare request input
         data = {
-            'client_id':'public',
-            'client_secret':'thisshpublic'
+            'client_id':'testusername',
+            'client_secret':'testpassword'
         }
         # do request
 
