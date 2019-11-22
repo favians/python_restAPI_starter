@@ -32,7 +32,7 @@ app.config['APP_DEBUG'] = True
 ###############
 
 app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET")
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=int(os.getenv("JWT_EXPIRED_VALUE")))
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
 jwt = JWTManager(app)
     
