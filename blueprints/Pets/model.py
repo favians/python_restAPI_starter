@@ -18,7 +18,7 @@ class Pets(db.Model):
         'client_id': fields.Integer,
     }
 
-    response_field2 = {
+    response_field_with_client = {
         'id': fields.Integer,
         'created_at': fields.DateTime,
         'pet_name': fields.String,

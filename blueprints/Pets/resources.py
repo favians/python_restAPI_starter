@@ -96,7 +96,7 @@ class PetsResourceList(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("p", type=int, location="args", default=1)
         parser.add_argument("rp",type=int, location="args", default=25)
-        parser.add_argument("id",type=int,location="args", help="invalid book id")
+        parser.add_argument("id",type=int,location="args", help="invalid pets id")
         parser.add_argument("pet_name",location="args", help="invalid isbn")
         parser.add_argument("pet_type",location="args", help="invalid isbn")
         args =parser.parse_args()
@@ -134,7 +134,7 @@ class PetsWithClient(Resource):
         
         result = []
         for data in qry:
-            holder = marshal(data[0], Pets.response_field2)
+            holder = marshal(data[0], Pets.response_field_with_client)
             holder["username"] = data[1].username
             holder["status"] = data[1].status
             result.append(holder)
