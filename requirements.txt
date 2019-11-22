@@ -8,3 +8,4 @@ flask-jwt-extended
 requests
 pytest
 password_strength
+python-dotenv

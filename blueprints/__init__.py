@@ -13,6 +13,16 @@ from datetime import timedelta
 #wrap
 from functools import wraps
 
+#Load ENV Python
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+# OR, explicitly providing path to '.env'
+from pathlib import Path  # python3 only
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+
 
 app = Flask(__name__)
 app.config['APP_DEBUG'] = True
@@ -21,8 +31,8 @@ app.config['APP_DEBUG'] = True
 # JWT
 ###############
 
-app.config['JWT_SECRET_KEY'] = 'Sfasdlah8xPnS73nS3dhb'
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
+app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET")
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=int(os.getenv("JWT_EXPIRED_VALUE")))
 
 jwt = JWTManager(app)
     
@@ -53,7 +63,9 @@ def non_internal_required(fn):
 ####Database####
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/flaskstarter'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/flaskstarter'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(os.getenv("DATABASE_USER"), os.getenv("DATABASE_PASSWORD"), os.getenv("DATABASE_HOST"), os.getenv("DATABASE_PORT"),  os.getenv("DATABASE_NAME"))
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
